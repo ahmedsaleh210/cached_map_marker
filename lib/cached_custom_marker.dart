@@ -58,7 +58,7 @@ class CachedCustomMarker {
       required int width,
       required int height}) async {
     final rawBytes = await _downloadFileBytes(url);
-    final processedBytes = await _preProcessImage(rawBytes, 150, 150);
+    final processedBytes = await _preProcessImage(rawBytes, width, height);
     return await _instance.putFile(cacheKey, processedBytes);
   }
 
