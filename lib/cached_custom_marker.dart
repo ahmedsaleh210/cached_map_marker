@@ -1,5 +1,6 @@
 library cached_custom_marker;
 
+import 'dart:developer';
 import 'dart:io';
 import 'dart:ui' as ui;
 
@@ -43,12 +44,20 @@ class CachedCustomMarker {
 
   /// Attempts to retrieve the file from memory cache.
   Future<File?> _getFileFromMemoryCache(String cacheKey) async {
-    return (await _instance.getFileFromMemory(cacheKey))?.file;
+    final file = (await _instance.getFileFromMemory(cacheKey))?.file;
+    if (file != null) {
+      log('Cached Marker Logger: File retrieved from memory cache.');
+    }
+    return file;
   }
 
   /// Attempts to retrieve the file from disk cache.
   Future<File?> _getFileFromDiskCache(String cacheKey) async {
-    return (await _instance.getFileFromCache(cacheKey))?.file;
+    final file = (await _instance.getFileFromCache(cacheKey))?.file;
+    if (file != null) {
+      log('Cached Marker Logger: File retrieved from disk cache.');
+    }
+    return file;
   }
 
   /// Downloads the file from the network, processes it, and caches it.
@@ -59,6 +68,7 @@ class CachedCustomMarker {
       required int height}) async {
     final rawBytes = await _downloadFileBytes(url);
     final processedBytes = await _preProcessImage(rawBytes, width, height);
+    log('Cached Marker Logger: File downloaded and processed.');
     return await _instance.putFile(cacheKey, processedBytes);
   }
 
@@ -86,10 +96,13 @@ class CachedCustomMarker {
     final file =
         await _getFileFromCache(url: url, height: height, width: width);
     final bytes = await file.readAsBytes();
-    return BitmapDescriptor.bytes(bytes);
+    final descriptor = BitmapDescriptor.bytes(bytes);
+    await Future.delayed(const Duration(milliseconds: 30), () {});
+    return descriptor;
   }
 
   Future<void> clearCache() async {
     await _instance.emptyCache();
+    log('Cached Marker Logger: Cache cleared.');
   }
 }
