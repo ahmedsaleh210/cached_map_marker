@@ -88,11 +88,36 @@ class CachedCustomMarker {
         .asUint8List();
   }
 
-  Future<BitmapDescriptor> fromNetwork(
-      {required String url,
-      Map<String, String>? headers,
-      int width = 150,
-      int height = 150}) async {
+  /// Creates a [BitmapDescriptor] from a network image.
+  ///
+  /// This function downloads an image from the specified [url], optionally
+  /// resizing it to the given [width] and [height], and then converts it into
+  /// a [BitmapDescriptor] for use with map markers.
+  ///
+  /// The image is first attempted to be retrieved from a cache. If it's not
+  /// available in the cache, it's downloaded, processed, and then cached for
+  /// future use.
+  ///
+  /// The function introduces a slight delay after creating the [BitmapDescriptor]
+  /// to ensure that the descriptor is properly initialized before use. This is a
+  /// workaround for potential timing issues in the descriptor creation process.
+  ///
+  /// Parameters:
+  ///   [url] The URL of the network image to be converted into a [BitmapDescriptor].
+  ///   [width] The desired width of the image. Defaults to 150 pixels.
+  ///   [height] The desired height of the image. Defaults to 150 pixels.
+  ///
+  /// Returns a [Future<BitmapDescriptor>] that completes with the created
+  /// [BitmapDescriptor] once it's ready.
+  ///
+  /// Throws:
+  ///   Could throw an exception if the image download fails, or if there's an
+  ///   error reading the cached file.
+  Future<BitmapDescriptor> fromNetwork({
+    required String url,
+    int width = 150,
+    int height = 150,
+  }) async {
     final file =
         await _getFileFromCache(url: url, height: height, width: width);
     final bytes = await file.readAsBytes();
@@ -101,6 +126,17 @@ class CachedCustomMarker {
     return descriptor;
   }
 
+  /// Clears the cache used for storing images.
+  ///
+  /// This function empties the cache that's used for storing images downloaded
+  /// from the network. It's useful for freeing up storage space or ensuring that
+  /// updated images are downloaded.
+  ///
+  /// After clearing the cache, a log message is printed to indicate that the
+  /// cache has been successfully cleared.
+  ///
+  /// Throws:
+  ///   Could throw an exception if there's an error clearing the cache.
   Future<void> clearCache() async {
     await _instance.emptyCache();
     log('Cached Marker Logger: Cache cleared.');
