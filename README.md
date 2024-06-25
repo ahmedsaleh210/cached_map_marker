@@ -24,7 +24,7 @@ Import the package
 import 'package:cached_custom_marker/cached_custom_marker.dart';
 ```
 
-#### Creating a Custom Marker from a Network Image
+### Creating a Custom Marker from a Network Image
 ```dart
 BitmapDescriptor marker = await CachedCustomMarker.fromNetwork(
   url: 'https://example.com/image.png',
