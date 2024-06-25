@@ -16,7 +16,7 @@ To use the Cached Custom Marker package in your Flutter project, follow these st
 1. Add the following to your `pubspec.yaml` file:
 ```yaml
 dependencies:
-  cached_custom_marker: ^0.0.1
+  cached_custom_marker: <lastest>
 ```
 
 Import the package
