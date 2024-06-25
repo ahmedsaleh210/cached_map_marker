@@ -1,6 +1,6 @@
 name: cached_custom_marker
 description: "Cached Custom Marker is a Flutter package designed for optimizing map-based applications by efficiently managing custom markers. It automates the downloading, caching, and conversion of images into BitmapDescriptor objects for Google Maps, significantly reducing load times and network requests. With features like custom marker sizing and effective cache management, it's an essential tool for developers aiming to enhance user experience in their Flutter map applications."
-version: 0.0.1
+version: 0.0.1+3
 homepage: https://github.com/ahmedsaleh210/cached_custom_marker
 repository: https://github.com/ahmedsaleh210/cached_custom_marker
 license: MIT

@@ -2,6 +2,9 @@
 
 A Flutter package designed to efficiently manage and cache custom markers for maps. This package allows you to download and cache images from the network, converting them into `BitmapDescriptor` objects for use as map markers. It also provides functionality to clear the cached images, ensuring that your application can manage storage effectively.
 
+[![pub package](https://img.shields.io/pub/v/cached_custom_marker.svg)](https://pub.dev/packages/cached_custom_marker)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Features
 
 - **Download and Cache**: Automatically downloads and caches images for use as map markers, reducing network requests and improving performance.
