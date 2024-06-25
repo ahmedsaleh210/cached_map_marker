@@ -29,7 +29,8 @@ class CachedCustomMarker {
       final cacheKey = _extractCacheKey(url, width, height);
       File? file = await _getFileFromMemoryCache(cacheKey);
       file ??= await _getFileFromDiskCache(cacheKey);
-      file ??= await _downloadAndCacheFile(url, cacheKey);
+      file ??= await _downloadAndCacheFile(
+          url: url, cacheKey: cacheKey, width: width, height: height);
       return file;
     } catch (e) {
       rethrow;
@@ -51,7 +52,11 @@ class CachedCustomMarker {
   }
 
   /// Downloads the file from the network, processes it, and caches it.
-  Future<File> _downloadAndCacheFile(String url, String cacheKey) async {
+  Future<File> _downloadAndCacheFile(
+      {required String url,
+      required String cacheKey,
+      required int width,
+      required int height}) async {
     final rawBytes = await _downloadFileBytes(url);
     final processedBytes = await _preProcessImage(rawBytes, 150, 150);
     return await _instance.putFile(cacheKey, processedBytes);
