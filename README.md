@@ -1,39 +1,40 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Cached Custom Marker
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A Flutter package designed to efficiently manage and cache custom markers for maps. This package allows you to download and cache images from the network, converting them into `BitmapDescriptor` objects for use as map markers. It also provides functionality to clear the cached images, ensuring that your application can manage storage effectively.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- **Download and Cache**: Automatically downloads and caches images for use as map markers, reducing network requests and improving performance.
+- **Custom Marker Size**: Allows specifying the size of the marker images, enabling customization according to your application's needs.
+- **Cache Management**: Provides a method to clear the cache, helping manage the device's storage and ensuring the latest images are used.
 
-## Getting started
+## Getting Started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+To use the Cached Custom Marker package in your Flutter project, follow these steps:
 
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+### Installation
+1. Add the following to your `pubspec.yaml` file:
+```yaml
+dependencies:
+  cached_custom_marker: ^0.0.1
 ```
 
-## Additional information
+Import the package
+```dart
+import 'package:cached_custom_marker/cached_custom_marker.dart';
+```
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+#### Creating a Custom Marker from a Network Image
+```dart
+BitmapDescriptor marker = await CachedCustomMarker.fromNetwork(
+  url: 'https://example.com/image.png',
+  width: 100,
+  height: 100,
+);
+```
+
+### Contributing
+Contributions are welcome! Please feel free to submit a pull request.
+
+### License
+This package is licensed under the MIT License. See the LICENSE file for details.
