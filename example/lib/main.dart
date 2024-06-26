@@ -85,7 +85,7 @@ class _GoogleMapViewState extends State<GoogleMapView> {
             size: 50,
           ),
         ),
-        cacheKey: 'bytes_marker',
+        cacheKey: 'widget_marker',
         logicalSize: const Size(250, 250),
         imageSize: const Size(100, 100),
       )
