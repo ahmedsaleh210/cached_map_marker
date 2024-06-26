@@ -1,6 +1,10 @@
 # Cached Custom Marker
 
-A Flutter package designed to efficiently manage and cache custom markers for maps. This package allows you to download and cache images from the network, converting them into `BitmapDescriptor` objects for use as map markers. It also provides functionality to clear the cached images, ensuring that your application can manage storage effectively.
+A flutter ackage provides a Flutter library designed to simplify the process of caching custom markers for Google Maps in Flutter applications. It leverages the flutter_cache_manager package to cache images and widgets, allowing for efficient retrieval and use of custom markers on the map. This package addresses common challenges in managing marker resources by offering functionalities to:
+
+1. **Cache Network Images:** Download and cache images from the network, resizing them as needed for use as map markers.
+2. **Cache Widgets as Images:**  Render Flutter widgets to images, cache these images, and use them as custom markers. This is particularly useful for dynamic content that needs to be displayed on the map.
+3. **Efficient Resource Management:** Provides methods to clear the cache, ensuring that the application manages resources efficiently and avoids unnecessary storage usage.
 
 [![pub package](https://img.shields.io/pub/v/cached_custom_marker.svg)](https://pub.dev/packages/cached_custom_marker)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -10,6 +14,7 @@ A Flutter package designed to efficiently manage and cache custom markers for ma
 - **Download and Cache**: Automatically downloads and caches images for use as map markers, reducing network requests and improving performance.
 - **Custom Marker Size**: Allows specifying the size of the marker images, enabling customization according to your application's needs.
 - **Cache Management**: Provides a method to clear the cache, helping manage the device's storage and ensuring the latest images are used.
+- **Easy integration**: with Google Maps Flutter through BitmapDescriptor objects
 
 ## Getting Started
 
