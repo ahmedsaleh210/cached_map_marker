@@ -29,11 +29,27 @@ import 'package:cached_custom_marker/cached_custom_marker.dart';
 
 ### Creating a Custom Marker from a Network Image
 ```dart
-BitmapDescriptor marker = await CachedCustomMarker().fromNetwork(
-  url: 'https://example.com/image.png',
-  width: 100,
-  height: 100,
-);
+final markers = await Future.wait([
+      _cachedCustomMarker.fromNetwork(
+          url: 'https://cdn-icons-png.flaticon.com/512/5193/5193688.png',
+          size: const Size(60, 60)),
+      _cachedCustomMarker.fromWidget(
+        widget: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(50),
+          ),
+          child: const Icon(
+            Icons.location_on,
+            color: Colors.red,
+            size: 50,
+          ),
+        ),
+        cacheKey: 'bytes_marker',
+        logicalSize: const Size(250, 250),
+        imageSize: const Size(100, 100),
+    )
+]);
 ```
 
 ### Contributing
