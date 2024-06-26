@@ -24,7 +24,6 @@ abstract interface class _CacheMethod {
         cacheManager: cacheManager);
   }
 
-  
   /// Factory constructor for creating a [_CacheMethod] instance specifically for caching widgets.
   ///
   /// This method facilitates the caching of a widget by rendering it to an image and then storing it using a cache manager. It is particularly useful for dynamic widgets that need to be converted into a static image for caching and later retrieval.
