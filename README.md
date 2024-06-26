@@ -29,11 +29,14 @@ import 'package:cached_custom_marker/cached_custom_marker.dart';
 
 ### Creating a Custom Marker from a Network Image
 ```dart
+final _cachedCustomMarker = CachedCustomMarker();
 final markers = await Future.wait([
+      // Create a custom marker from a network image and cache it
       _cachedCustomMarker.fromNetwork(
           url: 'https://cdn-icons-png.flaticon.com/512/5193/5193688.png',
           size: const Size(60, 60)),
-      _cachedCustomMarker.fromWidget(
+      // Create a custom marker from a widget and cache it
+  _cachedCustomMarker.fromWidget(
         widget: Container(
           decoration: BoxDecoration(
             color: Colors.white,
@@ -43,11 +46,11 @@ final markers = await Future.wait([
             Icons.location_on,
             color: Colors.red,
             size: 50,
-          ),
         ),
-        cacheKey: 'bytes_marker',
-        logicalSize: const Size(250, 250),
-        imageSize: const Size(100, 100),
+      ),
+    cacheKey: 'bytes_marker',
+    logicalSize: const Size(250, 250),
+    imageSize: const Size(100, 100),
     )
 ]);
 ```
