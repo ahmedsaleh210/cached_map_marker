@@ -23,7 +23,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.0.1+3"
   characters:
     dependency: transitive
     description:
@@ -508,6 +508,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.1"
+  widget_to_marker:
+    dependency: "direct main"
+    description:
+      name: widget_to_marker
+      sha256: "073a4d54045f4413ac923cf986e2290390589b937e8f2123b16c457ae3f67e4f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.5"
   win32:
     dependency: transitive
     description:

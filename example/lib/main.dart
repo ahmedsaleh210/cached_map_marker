@@ -57,25 +57,52 @@ class GoogleMapView extends StatefulWidget {
 
 class _GoogleMapViewState extends State<GoogleMapView> {
   Set<Marker> markers = {};
+  late CachedCustomMarker _cachedCustomMarker;
 
   @override
   void initState() {
+    _cachedCustomMarker = CachedCustomMarker();
     _initMarkers();
     super.initState();
   }
 
   void _initMarkers() async {
-    final marker = Marker(
-        markerId: const MarkerId('marker_id'),
+    late Marker networkMarker;
+    late Marker bytesMarker;
+    final futures = await Future.wait([
+      _cachedCustomMarker.fromNetwork(
+          url: 'https://cdn-icons-png.flaticon.com/512/5193/5193688.png',
+          width: 60,
+          height: 60),
+      _cachedCustomMarker.fromWidget(
+        widget: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(50),
+          ),
+          child: const Icon(
+            Icons.location_on,
+            color: Colors.red,
+            size: 50,
+          ),
+        ),
+        cacheKey: 'bytes_marker',
+        logicalSize: const Size(250, 250),
+        imageSize: const Size(100, 100),
+      )
+    ]);
+    networkMarker = Marker(
+        markerId: const MarkerId('network_marker_id'),
         position: const LatLng(37.77483, -122.41942),
-        icon: await CachedCustomMarker().fromNetwork(
-            url: 'https://cdn-icons-png.flaticon.com/512/5193/5193688.png',
-            width: 60,
-            height: 60));
+        icon: futures[0]);
+
+    bytesMarker = Marker(
+        markerId: const MarkerId('bytes_marker_id'),
+        position: const LatLng(37.734921595128405, -122.43419039994477),
+        icon: futures[1]);
     setState(() {
-      markers.add(marker);
+      markers.addAll([networkMarker, bytesMarker]);
     });
-    // CachedCustomMarker().clearCache();
   }
 
   @override
