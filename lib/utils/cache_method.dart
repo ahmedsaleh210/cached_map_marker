@@ -24,9 +24,22 @@ abstract interface class _CacheMethod {
         cacheManager: cacheManager);
   }
 
-  /// Factory constructor to create a [_CacheMethod] instance for widget data.
+  
+  /// Factory constructor for creating a [_CacheMethod] instance specifically for caching widgets.
   ///
-  /// Requires [widget] as the data to cache, [cacheKey] for identifying the cached file,
+  /// This method facilitates the caching of a widget by rendering it to an image and then storing it using a cache manager. It is particularly useful for dynamic widgets that need to be converted into a static image for caching and later retrieval.
+  ///
+  /// Parameters:
+  /// - [widget]: The [Widget] to be rendered and cached. This is the primary content that will be converted into an image.
+  /// - [cacheKey]: A unique string identifier used to store and retrieve the cached image from the cache manager. It ensures that the cached content can be uniquely identified.
+  /// - [cacheManager]: An instance of [BaseCacheManager] that handles the storage and retrieval of cached images. It abstracts the underlying caching mechanism.
+  /// - [logicalSize] (optional): The size of the widget in logical pixels. This parameter allows specifying the dimensions of the widget before it is rendered. If not provided, the widget's intrinsic size is used.
+  /// - [imageSize] (optional): The size of the image to be cached. This can be different from the logical size of the widget. It specifies the dimensions of the resulting image. If not provided, the widget's rendered size is used.
+  /// - [waitToRender] (optional): A [Duration] to wait before rendering the widget. This can be useful if the widget requires some time to initialize or if there's a need to delay the rendering process for any reason.
+  ///
+  /// Returns:
+  /// An instance of [_WidgetCacheMethod] configured with the provided parameters. This instance is responsible for the actual process of rendering the widget, converting it to an image, and caching it using the provided cache manager.
+  ///
   factory _CacheMethod.widget(
       {required Widget widget,
       required String cacheKey,

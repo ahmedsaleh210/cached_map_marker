@@ -20,15 +20,17 @@ class CachedCustomMarker {
   CachedCustomMarker({BaseCacheManager? cacheManager})
       : _instance = cacheManager ?? DefaultCacheManager();
 
-  /// Retrieves a cached file from bytes.
+  /// Retrieves a cached network file, caching it if not already cached.
   ///
-  /// Attempts to retrieve a file based on the given [cacheKey], [width], [height], and
-  /// [widget]. It first tries to find the file in the cache. If not found, it caches the
-  /// provided bytes as a file, and then returns it.
+  /// This function attempts to retrieve a file from cache based on a network URL and specified dimensions. If the file is not found in the cache, it is downloaded from the network, resized to the specified dimensions, cached, and then returned.
   ///
-  /// Throws an exception if the file cannot be retrieved or cached.
+  /// Parameters:
+  /// - [url] : The URL of the network resource to be cached.
+  /// - [width] : The desired width of the image. This is used to resize the image before caching it.
+  /// - [height] : The desired height of the image. This is used in conjunction with the width to resize the image.
   ///
-  /// Returns a [File] object representing the cached file.
+  /// Returns:
+  /// A [Future] that completes with the [File] either retrieved from cache or newly cached after downloading and resizing.
   Future<File> _getCachedNeworkFile({
     required String url,
     required int width,
@@ -137,13 +139,12 @@ class CachedCustomMarker {
   /// Returns a [BitmapDescriptor] representing the downloaded image.
   Future<BitmapDescriptor> fromNetwork({
     required String url,
-    int width = 150,
-    int height = 150,
+    Size size = const Size(70, 70),
   }) async {
     final file = await _getCachedNeworkFile(
       url: url,
-      height: height,
-      width: width,
+      height: size.height.toInt(),
+      width: size.width.toInt(),
     );
     final bytes = await file.readAsBytes();
     final descriptor = BitmapDescriptor.bytes(bytes);
@@ -151,16 +152,21 @@ class CachedCustomMarker {
     return descriptor;
   }
 
-  /// Creates a [BitmapDescriptor] from a widget.
+  /// This function takes a widget and optionally its logical size and image size,
+  /// renders it to an image, caches it, and then creates a [BitmapDescriptor] from the cached image.
+  /// This is useful for dynamic content that needs to be displayed as a marker on a map, for example.
   ///
-  /// Takes a [cacheKey] and [widget] representing an image, caches the image locally,
-  /// and converts it into a [BitmapDescriptor]. This can be used for representing markers
-  /// on a map without downloading the image from the network.
+  /// Parameters:
+  /// - [cacheKey]: A unique string to identify the cached file. This is required to retrieve or overwrite the cached image.
+  /// - [widget]: The [Widget] to be rendered and cached. This is the content that will be converted into an image.
+  /// - [waitToRender] (optional): A [Duration] to wait before rendering the widget. This can be useful if the widget needs some time to complete its build phase.
+  /// - [logicalSize] (optional): The logical size of the widget in logical pixels. This can be used to define the size of the widget before rendering it.
+  /// - [imageSize] (optional): The size of the image to be cached. This can differ from the logical size of the widget and is used when the rendered image needs to be of a specific size.
   ///
-  /// The [width] and [height] parameters specify the size to which the image should be
-  /// resized. If not specified, both default to 150 pixels.
+  /// Returns:
+  /// A [Future] that completes with a [BitmapDescriptor] representing the rendered and cached widget.
   ///
-  /// Returns a [BitmapDescriptor] representing the image defined by the [bytes] array.
+  /// Note: This function includes a brief delay (15 milliseconds) after creating the bitmap descriptor to ensure that the file operations complete successfully.
   Future<BitmapDescriptor> fromWidget({
     required String cacheKey,
     required Widget widget,

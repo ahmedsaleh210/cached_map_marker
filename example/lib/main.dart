@@ -72,8 +72,7 @@ class _GoogleMapViewState extends State<GoogleMapView> {
     final futures = await Future.wait([
       _cachedCustomMarker.fromNetwork(
           url: 'https://cdn-icons-png.flaticon.com/512/5193/5193688.png',
-          width: 60,
-          height: 60),
+          size: const Size(60, 60)),
       _cachedCustomMarker.fromWidget(
         widget: Container(
           decoration: BoxDecoration(
