@@ -23,7 +23,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: dart-lang/setup-dart@v1
+
+      - name: Set up Dart SDK
+        uses: dart-lang/setup-dart@v1
+        
+      - name: Clear Flutter and Dart caches
+        run: |
+          flutter clean
+          flutter pub cache repair
+
+
+      - name: Set up Flutter SDK
+        uses: subosito/flutter-action@v2
+
+        
       - name: Install dependencies
         run: flutter pub get
       # Here you can insert custom steps you need
