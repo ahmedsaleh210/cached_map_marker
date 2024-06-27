@@ -15,7 +15,7 @@ on:
     # If your repository contains multiple packages consider a pattern like:
     # - 'my_package_name-v[0-9]+.[0-9]+.[0-9]+*'
 
-# Publish using custom workflow file
+# Publish using custom workflow file for Dart packages
 jobs:
   publish:
     permissions:
