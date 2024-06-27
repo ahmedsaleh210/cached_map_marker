@@ -38,4 +38,10 @@ jobs:
       # Here you can insert custom steps you need
       # - run: dart tool/generate-code.dart
       - name: Publish
-        run: dart pub publish --force
+        env:
+          PUB_DEV_ACCESS_TOKEN: ${{ secrets.PUB_DEV_TOKEN }}
+        run: |
+          dart pub token add https://pub.dev --token $PUB_DEV_ACCESS_TOKEN
+          dart pub publish --force
+        environment: 
+          name: pub.dev
