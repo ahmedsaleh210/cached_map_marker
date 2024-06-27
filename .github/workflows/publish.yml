@@ -4,44 +4,14 @@ name: Publish to pub.dev
 on:
   push:
     tags:
-    # must align with the tag-pattern configured on pub.dev, often just replace
-      # {{version}} with [0-9]+.[0-9]+.[0-9]+*
-    - 'v[0-9]+.[0-9]+.[0-9]+*' # tag-pattern on pub.dev: 'v{{version}}'
-    # If you prefer tags like '1.2.3', without the 'v' prefix, then use:
-    # - '[0-9]+.[0-9]+.[0-9]+*' # tag-pattern on pub.dev: '{{version}}'
-    # If your repository contains multiple packages consider a pattern like:
-    # - 'my_package_name-v[0-9]+.[0-9]+.[0-9]+*'
+    - 'v[0-9]+.[0-9]+.[0-9]+*' # for tags like: 'v1.2.3'
 
-# Publish using custom workflow file for Dart packages with Flutter
 jobs:
   publish:
     permissions:
       id-token: write # Required for authentication using OIDC
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Dart SDK
-        uses: dart-lang/setup-dart@v1
-
-      - name: Set up Flutter SDK
-        uses: subosito/flutter-action@v2
-        
-      - name: Clear Flutter and Dart caches
-        run: |
-          flutter clean
-          flutter pub cache repair
-
-
-      - name: Install dependencies
-        run: flutter pub get
-      # Here you can insert custom steps you need
-      # - run: dart tool/generate-code.dart
-      - name: Publish
-        env:
-          PUB_DEV_ACCESS_TOKEN: ${{ secrets.PUB_DEV_TOKEN }}
-        run: |
-          dart pub token add https://pub.dev --token $PUB_DEV_ACCESS_TOKEN
-          dart pub publish --force
-        environment: 
-          name: pub.dev
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
+    with:
+      # Specify the github actions deployment environment
+      environment: pub.dev
+      # working-directory: path/to/package/within/repository
