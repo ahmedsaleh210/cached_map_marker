@@ -32,7 +32,7 @@ Import the package
 import 'package:cached_custom_marker/cached_custom_marker.dart';
 ```
 
-### Creating a Custom Marker from a Network Image
+### Creating a Custom Marker from Widget & Network Image, then caching it
 ```dart
 final _cachedCustomMarker = CachedCustomMarker();
 final markers = await Future.wait([
