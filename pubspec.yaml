@@ -1,6 +1,6 @@
 name: cached_custom_marker
 description: "Cached Custom Marker optimizes Flutter map apps by managing custom markers. It automates image downloading, caching, and conversion for Google Maps, enhancing performance and user experience."
-version: 0.0.3+1
+version: 0.0.3+2
 homepage: https://github.com/ahmedsaleh210/cached_custom_marker
 repository: https://github.com/ahmedsaleh210/cached_custom_marker
 license: MIT
