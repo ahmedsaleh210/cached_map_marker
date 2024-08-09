@@ -1,4 +1,4 @@
-part of '../cached_custom_marker.dart';
+part of '../cached_map_marker.dart';
 
 /// Defines an abstract interface for caching mechanisms.
 abstract interface class _CacheMethod {

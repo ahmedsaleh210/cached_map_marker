@@ -6,7 +6,7 @@ A flutter ackage provides a Flutter library designed to simplify the process of 
 2. **Cache Widgets as Images:**  Render Flutter widgets to images, cache these images, and use them as custom markers. This is particularly useful for dynamic content that needs to be displayed on the map.
 3. **Efficient Resource Management:** Provides methods to clear the cache, ensuring that the application manages resources efficiently and avoids unnecessary storage usage.
 
-[![pub package](https://img.shields.io/pub/v/cached_custom_marker.svg)](https://pub.dev/packages/cached_custom_marker)
+[![pub package](https://img.shields.io/pub/v/cached_map_marker.svg)](https://pub.dev/packages/cached_map_marker)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Features
@@ -24,24 +24,24 @@ To use the Cached Custom Marker package in your Flutter project, follow these st
 1. Add the following to your `pubspec.yaml` file:
 ```yaml
 dependencies:
-  cached_custom_marker: <lastest>
+  cached_map_marker: <lastest>
 ```
 
 Import the package
 ```dart
-import 'package:cached_custom_marker/cached_custom_marker.dart';
+import 'package:cached_map_marker/cached_map_marker.dart';
 ```
 
 ### Creating a Custom Marker from Widget & Network Image, then caching it
 ```dart
-final _cachedCustomMarker = CachedCustomMarker();
+final _cachedMapMarker = CachedMapMarker();
 final markers = await Future.wait([
       // Create a custom marker from a network image and cache it
-      _cachedCustomMarker.fromNetwork(
+      _cachedMapMarker.fromNetwork(
           url: 'https://cdn-icons-png.flaticon.com/512/5193/5193688.png',
           size: const Size(60, 60)),
       // Create a custom marker from a widget and cache it
-  _cachedCustomMarker.fromWidget(
+  _cachedMapMarker.fromWidget(
         widget: Container(
           decoration: BoxDecoration(
             color: Colors.white,

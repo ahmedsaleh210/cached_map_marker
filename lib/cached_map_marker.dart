@@ -1,4 +1,4 @@
-library cached_custom_marker;
+library cached_map_marker;
 
 import 'dart:developer';
 import 'dart:io';
@@ -14,10 +14,10 @@ part 'utils/cache_method.dart';
 part 'utils/create_image_from_widget.dart';
 part 'utils/image_processing.dart';
 
-class CachedCustomMarker {
+class CachedMapMarker {
   late final BaseCacheManager _instance;
 
-  CachedCustomMarker({BaseCacheManager? cacheManager})
+  CachedMapMarker({BaseCacheManager? cacheManager})
       : _instance = cacheManager ?? DefaultCacheManager();
 
   /// Retrieves a cached network file, caching it if not already cached.

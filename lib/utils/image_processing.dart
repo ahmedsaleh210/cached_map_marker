@@ -1,4 +1,4 @@
-part of '../cached_custom_marker.dart';
+part of '../cached_map_marker.dart';
 
 class _ImageProcessing {
   /// Processes the given image bytes to fit specified dimensions.

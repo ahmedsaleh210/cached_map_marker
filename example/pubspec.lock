@@ -17,13 +17,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
-  cached_custom_marker:
+  cached_map_marker:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "0.0.3+1"
+    version: "0.0.3+2"
   characters:
     dependency: transitive
     description:

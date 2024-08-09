@@ -1,4 +1,4 @@
-part of '../cached_custom_marker.dart';
+part of '../cached_map_marker.dart';
 
 Future<Uint8List> _createImageFromWidget(Widget rawWidget,
     {Size? logicalSize,

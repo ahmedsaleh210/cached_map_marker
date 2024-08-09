@@ -1,4 +1,4 @@
-import 'package:cached_custom_marker/cached_custom_marker.dart';
+import 'package:cached_map_marker/cached_map_marker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -57,11 +57,11 @@ class GoogleMapView extends StatefulWidget {
 
 class _GoogleMapViewState extends State<GoogleMapView> {
   Set<Marker> markers = {};
-  late CachedCustomMarker _cachedCustomMarker;
+  late CachedMapMarker _cachedMapMarker;
 
   @override
   void initState() {
-    _cachedCustomMarker = CachedCustomMarker();
+    _cachedMapMarker = CachedMapMarker();
     _initMarkers();
     super.initState();
   }
@@ -70,10 +70,10 @@ class _GoogleMapViewState extends State<GoogleMapView> {
     late Marker networkMarker;
     late Marker bytesMarker;
     final futures = await Future.wait([
-      _cachedCustomMarker.fromNetwork(
+      _cachedMapMarker.fromNetwork(
           url: 'https://cdn-icons-png.flaticon.com/512/5193/5193688.png',
           size: const Size(60, 60)),
-      _cachedCustomMarker.fromWidget(
+      _cachedMapMarker.fromWidget(
         widget: Container(
           decoration: BoxDecoration(
             color: Colors.white,
