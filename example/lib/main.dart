@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cached Custom Marker Demo'),
+        title: const Text('Cached Map Marker Demo'),
       ),
       body: Center(
         child: ElevatedButton(
@@ -108,7 +108,7 @@ class _GoogleMapViewState extends State<GoogleMapView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cached Custom Marker Demo'),
+        title: const Text('Cached Map Marker Demo'),
       ),
       body: GoogleMap(
         initialCameraPosition: const CameraPosition(
