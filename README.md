@@ -1,6 +1,6 @@
 # Cached Map Marker
 
-A flutter ackage provides a Flutter library designed to simplify the process of caching custom markers for Google Maps in Flutter applications. It leverages the flutter_cache_manager package to cache images and widgets, allowing for efficient retrieval and use of custom markers on the map. This package addresses common challenges in managing marker resources by offering functionalities to:
+Provides a Flutter library designed to simplify the process of caching custom markers for Google Maps in Flutter applications. It leverages the flutter_cache_manager package to cache images and widgets, allowing for efficient retrieval and use of custom markers on the map. This package addresses common challenges in managing marker resources by offering functionalities to:
 
 1. **Cache Network Images:** Download and cache images from the network, resizing them as needed for use as map markers.
 2. **Cache Widgets as Images:**  Render Flutter widgets to images, cache these images, and use them as custom markers. This is particularly useful for dynamic content that needs to be displayed on the map.

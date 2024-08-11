@@ -1,6 +1,6 @@
 name: cached_map_marker
 description: "Optimizes Google map markers by caching, managing custom markers."
-version: 0.0.1
+version: 0.0.1+1
 homepage: https://github.com/ahmedsaleh210/cached_map_marker
 repository: https://github.com/ahmedsaleh210/cached_map_marker
 license: MIT
